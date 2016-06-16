@@ -10,6 +10,7 @@ namespace WebApplication3
     public class Picture
     {
         const double maxHeight = 400;
+        const double maxWith = 600;
         public byte[] Image { get; set; }
        
         public string HtmlRaw { get; set; }
@@ -28,6 +29,12 @@ namespace WebApplication3
             double with = im.Width;
             height *= k;
             with *= k;
+            if(with > maxWith)
+            {
+                k = maxWith / with;
+                with *= k;
+                height *= k;
+            }
             this.HtmlRaw = String.Format("<img style='width:{0}px; height:{1}px;' src=\"data:image/jpeg;base64,",with.ToString(),height.ToString());
         }
 
